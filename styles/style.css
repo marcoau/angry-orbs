@@ -1,0 +1,136 @@
+/* your beautiful css styling goes here! */
+
+/* Note: an asteroid image is included in this repo. 
+Feel free to use it if you like. */
+body{
+  position: relative;
+  font-family: 'Play', 'Impact', sans-serif;
+  width: 800px;
+  background-color: black;
+  margin: 0 auto 0 auto;
+}
+button{
+  font-family: 'Play', 'Impact', sans-serif;
+}
+.header {
+  height: 90px;
+  border-width: 10px;
+  border-color: white;
+}
+.title{
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 400px;
+  height: 80px;
+
+  background-color: black;
+  color: red;
+  margin: 0;
+}
+.title h1{
+  margin-right: 20px;
+}
+.scoreboard{
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  width: 400px;
+  background-color: black;
+  color: white;
+}
+.line{
+  width: 800px;
+  height: 10px;
+  background-color: white;
+}
+.old{
+  color: gray;
+  font-size: 30pt;
+}
+.new{
+  color: red;
+  font-size: 50pt;
+}
+.gameboard{
+  position: relative;
+  background-color: black;
+  width: 800px;
+  height: 500px;
+}
+.startgame{
+  position: absolute;
+  left: 50%;
+  bottom: 10%;
+  height: 50px;
+  width: 150px;
+  margin: 0 0 0 -75px;
+  border: 0px;
+  background-color: black;
+
+  font-size: 24px;
+  color: white;
+}
+.startgame:hover{
+  background-color: blue;
+}
+
+.getreadymessage{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 200px;
+  width: 400px;
+  margin: -100px 0 0 -200px;
+
+  background-color: black;
+  color:white;
+  text-align: middle;
+}
+.getreadymessage p{
+  text-align: middle;
+  font-size: 60px;
+}
+
+
+.startmessage, .lostmessage{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  background-color: white;
+  height: 200px;
+  width: 400px;
+  margin: -100px 0 0 -200px;
+}
+
+
+.board{
+  background-color: black;
+}
+
+
+.enemy{
+  fill: white;
+}
+.frozen{
+  fill: gray;
+}
+.player{
+  fill: red;
+  z-index: 100;  
+}
+.weapon{
+  fill: yellow;
+}
+.freeze{
+  fill: blue;
+}
+.fireball{
+  fill: red;
+  opacity: 0.5;
+}
+.coldball{
+  fill: white;
+  opacity: 0.3;
+}
+
