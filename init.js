@@ -2,6 +2,29 @@ var score = 0;
 
 var gameStart = function(){
 
+  var score = 0;
+
+  //GAMEWIDE LOGICS
+  var stop = false;
+  var gameOver = function(){
+    stop = true;
+    clearInterval(spawnEnemy);
+    // clearInterval(spawnWeapon);
+    d3.select('.player').style('fill','gray');
+    var lost = '<div class="lostmessage"><h3>You lost!</h3>' + 
+      '<button class="startgame">New Game?</button></div>';
+    //board.remove();
+    //board.html(lost);
+    setTimeout(function(){
+      d3.select('.gameboard').append('div').html(lost);
+    }, 1000);
+  };
+  var postScore = function(){
+    d3.select('.current').select('span').text(score);
+  };
+
+  postScore();
+
   var parameters = {
     boardWidth: 800,
     boardHeight: 500,
@@ -89,6 +112,7 @@ var gameStart = function(){
     }
     this.v = 0.3;
     this.active = true;
+    this.inactiveCount = 0;
   };
   var enemies = d3.range(2).map(function(){ 
     return new Enemy(parameters);
@@ -122,6 +146,11 @@ var gameStart = function(){
         var dir = Math.atan(dy/dx);
         enemies[i].x += Math.abs(enemies[i].v * Math.cos(dir)) * dxMultiplier;
         enemies[i].y += Math.abs(enemies[i].v * Math.sin(dir)) * dyMultiplier;
+      }else{
+        enemies[i].inactiveCount++;
+        if(enemies[i].inactiveCount > 100){
+          enemies[i].active = true;
+        }
       }
     }
 
@@ -342,16 +371,16 @@ var gameStart = function(){
         var dx = coldballs[i].x - enemies[j].x;
         var dy = coldballs[i].y - enemies[j].y;
         var d = Math.pow(Math.pow(dx, 2) + Math.pow(dy, 2), 0.5);
-        if(d < coldballs[i].r + 10){
+        if(d < coldballs[i].r + 10 && enemies[j].active){
           var enemy = enemies[j];
           enemy.active = false;
           // enemies.splice(j, 1);
           // score++;
           // postScore();
-          setTimeout(function(){
-            enemy.active = true;
-            console.log('reactivate');
-          }, 3000);
+          // setTimeout(function(){
+          //   enemy.active = true;
+          //   console.log('reactivate');
+          // }, 3000);
         }
         j++;
       }
@@ -414,9 +443,7 @@ var gameStart = function(){
       var d = Math.pow(Math.pow(dx, 2) + Math.pow(dy, 2), 0.5);
       if(d < 60){
         setOffColdball(freezes[i], enemies);
-        console.log(freezes);
         freezes.splice(i, 1);
-        console.log(freezes);
       }
     }
   };
@@ -424,25 +451,6 @@ var gameStart = function(){
     console.log('coldball');
     coldballs.push(new Coldball(freeze.x, freeze.y));
     createWeapon();
-  };
-
-
-  var stop = false;
-  var gameOver = function(){
-    stop = true;
-    clearInterval(spawnEnemy);
-    // clearInterval(spawnWeapon);
-    d3.select('.player').style('fill','gray');
-    var lost = '<div class="lostmessage"><h3>You lost!</h3>' + 
-      '<button class="startgame">New Game?</button></div>';
-    //board.remove();
-    //board.html(lost);
-    setTimeout(function(){
-      d3.select('.gameboard').append('div').html(lost);
-    }, 1000);
-  };
-  var postScore = function(){
-    d3.select('.current').select('span').text(score);
   };
 
   //TIMERS
