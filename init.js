@@ -463,7 +463,7 @@ var gameStart = function(){
     return stop;
   });
 
-  var timePerEnemy = 100000;
+  var timePerEnemy = 1000;
   var enemyPerSpawn = 2;
   var timePerWeapon = 5000;
   var initialWeapons = 3;
